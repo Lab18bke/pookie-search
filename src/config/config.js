@@ -49,7 +49,7 @@ const CONFIGURATION = {
         followRedirects: true,
         retryAttempts: 3,
         retryDelayMilliseconds: 1500,
-        userAgent: 'PookieSearchBot/1.0 (+https://pookiesearch.localhost'
+        userAgent: 'PookieSearchBot/1.0 (+https://pookiesearch.localhost)'
     },
 
     summarization: {
