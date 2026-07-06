@@ -177,13 +177,16 @@ class DatabaseService {
     }
 
     createTables() {
-    return Promise.all([
-        this.run(CREATE_PAGES_TABLE_SQL),
-        this.run(CREATE_SEARCH_HISTORY_TABLE_SQL),
-        this.run(CREATE_SETTINGS_TABLE_SQL),
-        this.run(CREATE_CRAWL_QUEUE_TABLE_SQL),
-        this.run(CREATE_CRAWL_ERRORS_TABLE_SQL)
-    ]);
+    return [
+        CREATE_PAGES_TABLE_SQL,
+        CREATE_SEARCH_HISTORY_TABLE_SQL,
+        CREATE_SETTINGS_TABLE_SQL,
+        CREATE_CRAWL_QUEUE_TABLE_SQL,
+        CREATE_CRAWL_ERRORS_TABLE_SQL
+    ].reduce(
+        (promise, sql) => promise.then(() => this.run(sql)),
+        Promise.resolve()
+    );
     }
 
     createIndexes() {
@@ -269,7 +272,7 @@ class DatabaseService {
 
     pageExists(url) {
     return this.get("SELECT id FROM pages WHERE url = ?", [url])
-        .then(result => result !== undefined);
+        .then(result => result !== null);
     }
 
     saveSearchHistory(query) {
@@ -300,12 +303,15 @@ class DatabaseService {
     saveSetting(key, value) {
     return this.run(
         `
-        INSERT OR REPLACE INTO settings (
+        INSERT INTO settings (
             key,
             value,
             updated_at
         )
         VALUES (?, ?, CURRENT_TIMESTAMP)
+        ON CONFLICT(key) DO UPDATE SET
+            value = excluded.value,
+            updated_at = CURRENT_TIMESTAMP
         `,
         [key, value]
     );
@@ -385,6 +391,11 @@ class DatabaseService {
     }
 
     close() {
+    if (!this.database) {
+        this.connected = false;
+        return Promise.resolve();
+    }
+
     return new Promise((resolve, reject) => {
         this.database.close(error => {
             if (error) {
@@ -398,3 +409,5 @@ class DatabaseService {
     });
     }
 }
+
+module.exports = DatabaseService;
