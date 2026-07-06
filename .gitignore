@@ -1,0 +1,9 @@
+node_modules/
+.env
+logs/
+*.log
+*.db
+*.sqlite
+cache/
+.vscode/
+package-lock.json
