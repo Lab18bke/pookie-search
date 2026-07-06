@@ -1,0 +1,38 @@
+{
+    "name": "Pookie Search",
+    "version": "67.67.0",
+    "description": "A simple Search Engine for Students, Normal Users and Teachers.",
+    "main": "src/app.js",
+    "private": true,
+
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "node src/app.js"
+    },
+
+    "keywords": ["search", "search engine", "pookie search", "crawler", "made by vishwas", "smart guy"],
+
+    "author": "VISHWAS KUMAR",
+
+    "dependencies": {
+        "@mozilla/readability": "^0.5.0",
+        "axios": "^1.11.0",
+        "chalk": "^5.6.0",
+        "cheerio": "^1.1.2",
+        "compression": "^1.8.1",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.1",
+        "express": "^5.1.0",
+        "helmet": "^8.1.0",
+        "fuse.js": "^7.1.0",
+        "jsdom": "^26.1.0",
+        "morgan": "^1.10.1",
+        "natural": "^8.1.0",
+        "node-cache": "^5.1.1",
+        "p-limit": "^7.1.1",
+        "robots-parser": "^3.0.1",
+        "sqlite3": "^5.1.7",
+        "uuid": "^11.1.0",
+        "xml2js": "^0.6.2"
+    }
+}
