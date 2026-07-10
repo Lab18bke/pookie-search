@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pookie Search</title>
+    <link rel="stylesheet" href="/css/results.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7e4f5f82d0.js" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="logoContainer">
+                <a href="/" class="logoLink">
+                    <img src="/images/psearch.png" alt="Pookie Search" class="logo">
+                </a>
+            </div>
+            <div class="searchContainer">
+                <form id="searchForm" class="searchBox">
+                    <i class="fas fa-search"></i>
+                    <input id="searchInput" type="text" autocomplete="off" placeholder="Lookup some nice stuff today.">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </header>
+
+        <main class="content">
+            <section id="statistics" class="statistics">Searching...</section>
+            <section id="loadingContainer" class="loadingContainer">
+                <div class="loadingSpinner"></div>
+                <p>Looking through the pookies...</p>
+            </section>
+            <section id="resultsContainer" class="resultsContainer"></section>
+            <section id="emptyContainer" class="emptyContainer hidden">
+                <i class="fa-regular fa-face-frown-open"></i>
+                <h2>No results found.</h2>
+                <p>Try searching something else.</p>
+            </section>
+        </main>
+        <footer class="footer">
+            <span>Pookie Search</span>
+            <span>•</span>
+            <span>Made by Vishwas Kumar</span>
+        </footer>
+    </div>
+
+    <template id="resultTemplate">
+        <article class="resultCard">
+            <a class="resultTitle" href="#">Example Title</a>
+            <div class="resultUrl">example.com</div>
+            <div class="resultSummary">Summary goes here.</div>
+        </article>
+    </template>
+    <script src="/js/results.js"></script>
+</body>
+</html>
